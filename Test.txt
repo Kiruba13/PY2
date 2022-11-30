@@ -1,0 +1,66 @@
+import time
+
+import selenium1
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium1.Locators.NewCustomer import ADDcustomer
+
+driver= webdriver.Chrome()
+ac=ADDcustomer(driver)
+
+driver.get("https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F")
+driver.find_element(By.XPATH,"//button[@type='submit']").click()
+driver.implicitly_wait(10)
+driver.maximize_window()
+driver.find_element(By.XPATH,'/html/body/div[3]/aside/div/div[4]/div/div/nav/ul/li[4]/a/p/i').click()
+time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/div[3]/aside/div/div[4]/div/div/nav/ul/li[4]/ul/li[1]/a/p").click()
+time.sleep(1)
+driver.find_element(By.XPATH,"/html/body/div[3]/div[1]/form[1]/div/div/a").click()
+time.sleep(1)
+driver.find_element(By.CSS_SELECTOR,".card-title").click()
+time.sleep(1)
+driver.find_element(By.ID,"Email").send_keys("yogakiru@gamil.com")
+time.sleep(1)
+driver.find_element(By.ID,"Password").send_keys("33966815")
+time.sleep(1)
+driver.find_element(By.NAME,"FirstName").send_keys("Atchu")
+time.sleep(1)
+driver.find_element(By.NAME,"LastName").send_keys("KK")
+time.sleep(1)
+driver.find_element(By.ID, "Gender_Female").click()
+time.sleep(1)
+
+Dob= "(//span[@class='k-select'])[1]"
+login= "//button[@type='submit']"
+date_leftarrow="//span[@class='k-icon k-i-arrow-60-left']"
+month ='/html[1]/body[1]/div[4]/div[1]/div[1]/div[1]/a[2]'
+date = '31'
+month_year = 'May 2019'
+
+driver.find_element(By.XPATH, Dob).click()
+time.sleep(1)
+
+while True:
+    mon_yr = driver.find_element(By.XPATH, month).text
+
+    if mon_yr == month_year:
+         break
+    else:
+        driver.find_element(By.XPATH, date_leftarrow).click()
+time.sleep(1)
+driver.find_element(By.LINK_TEXT,"31").click()
+time.sleep(1)
+
+driver.find_element(By.NAME, "Company").send_keys("Amazon")
+time.sleep(1)
+driver.find_element(By.NAME,"IsTaxExempt").click()
+time.sleep(1)
+driver.find_element(By.XPATH,'//*[@id="customer-info"]/div[2]/div[9]/div[2]/div/div[1]/div').click()
+time.sleep(1)
+driver.find_element(By.XPATH,'//*[@id="SelectedNewsletterSubscriptionStoreIds_listbox"]/li[1]').click()
+time.sleep(1)
+driver.find_element(By.NAME,"AdminComment").send_keys("Im a successfull, Thanks")
+time.sleep(1)
+driver.find_element(By.NAME,'save-continue').click()
+time.sleep(5)
